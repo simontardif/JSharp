@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "compile": "tsc -p . ",
+        "html": "copy /Y \".\\src\\index.html\" \".\\dist\\index.html\"",
+        "system": "copy /Y \".\\node_modules\\systemjs\\dist\\system.js\" \".\\dist\\system.js\"",
+        "build": "npm run compile && npm run html && npm run system",
+        "start": "http-server"
+    },
+    "devDependencies": {
+        "typescript": "~2.7.2"
+    },
+    "dependencies": {
+        "systemjs": "^0.21.4"
+    }
+}

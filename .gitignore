@@ -1,0 +1,6 @@
+node_modules/
+dist/
+src/utilities/bin
+src/utilities/obj
+src/utilities/.vs
+*.log
