@@ -1,10 +1,10 @@
 {
     "scripts": {
-        "compile": "tsc -p . ",
+        "compile": "node_modules\\.bin\\tsc -p . ",
         "html": "copy /Y \".\\src\\index.html\" \".\\dist\\index.html\"",
         "system": "copy /Y \".\\node_modules\\systemjs\\dist\\system.js\" \".\\dist\\system.js\"",
         "build": "npm run compile && npm run html && npm run system",
-        "start": "http-server"
+        "start": "node_modules\\.bin\\http-server"
     },
     "devDependencies": {
         "typescript": "~2.7.2"
