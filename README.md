@@ -5,9 +5,10 @@ This project use TypeScript to load C# assemblies.
 
 ## Setup
 
-Use VS Code for debugging TypeScript and Visual Studio for developping the C# parts. <br>
 NodeJS <br>
 DotNet Core SDK<br>
+Use VS Code for debugging TypeScript and Visual Studio for developping the C# parts. <br>
+
 * <b>npm install</b>
 
 ## Dev
