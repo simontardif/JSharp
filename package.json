@@ -13,7 +13,13 @@
         "myscript": "run-script-os",
         "myscript:win32": "copy /Y \".\\src\\myscript.js\" \".\\dist\\myscript.js\"",
         "myscript:linux": "cp \"./src/myscript.js\" \"./dist/myscript.js\"",
-        "build": "npm run compile && npm run html && npm run system && npm run .net && npm run myscript",
+        "wasm": "run-script-os",
+        "wasm:win32": "xcopy /Y \".\\wasm\" \".\\dist\\wasm\" /e /i /h",
+        "wasm:linux": "cp -a \"./wasm/.\" \"./dist/wasm/\"",
+        "asmjs": "run-script-os",
+        "asmjs:win32": "xcopy /Y \".\\asmjs\" \".\\dist\\asmjs\" /e /i /h",
+        "asmjs:linux": "cp -a \"./asmjs/.\" \"./dist/asmjs/\"",
+        "build": "npm run compile && npm run html && npm run system && npm run .net && npm run myscript && npm run wasm && npm run asmjs",
         "start": "node_modules\\.bin\\http-server"
     },
     "devDependencies": {

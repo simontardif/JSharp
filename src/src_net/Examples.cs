@@ -19,7 +19,8 @@ namespace MonoSanityClient
             {
                 Console.WriteLine("This is a test!" + Thread.CurrentThread.ManagedThreadId);
             });
-            return (Environment.MachineName + (a+ b)).ToString();
+
+            return (RuntimeInformation.OSDescription + (a+ b) + "another test!").ToString();
         }
 
         public static string RepeatString(string str, int count)

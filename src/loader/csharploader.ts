@@ -22,10 +22,7 @@ export class CSharpLoader
         this._assemblies = {};
         var browserSupportsNativeWebAssembly = typeof WebAssembly !== 'undefined' && WebAssembly.validate;
         var monoRuntimeUrlBase = (browserSupportsNativeWebAssembly ? 'wasm' : 'asmjs');
-        this._monoRuntimeScriptUrl = "../" + monoRuntimeUrlBase + '/mono.js';
-
-         // This part load the mono runtime
-        //this.initAssemblies();
+        this._monoRuntimeScriptUrl = "./" + monoRuntimeUrlBase + '/mono.js';
     }
 
     private initAssemblies() {
@@ -48,8 +45,8 @@ export class CSharpLoader
             printEr: function (line) { console.error(line); },
             locateFile: function (fileName) {
                 switch (fileName) {
-                    case 'mono.wasm': return '../wasm/mono.wasm';
-                    case 'mono.asm.js': return '../asmjs/mono.asm.js';
+                    case 'mono.wasm': return './wasm/mono.wasm';
+                    case 'mono.asm.js': return './asmjs/mono.asm.js';
                     default: return fileName;
                 }
             },
@@ -143,7 +140,7 @@ export class CSharpLoader
           'System.Core',
         ];
     
-        var allAssemblyUrls = (loadBclAssemblies.map(function (name) { return '../.net/' + name + '.dll'; }));
+        var allAssemblyUrls = (loadBclAssemblies.map(function (name) { return './' + name + '.dll'; }));
     
         Module.FS_createPath('/', 'appBinDir', true, true);
         allAssemblyUrls.forEach(function (url) {
