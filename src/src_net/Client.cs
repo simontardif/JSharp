@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MonoSanityClient
+namespace MonoClient
 {
-    public static class Examples
+    public static class Client
     {
         public static string AddNumbers(int a, int b)
         {

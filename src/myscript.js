@@ -7,11 +7,11 @@
 SystemJS.import('loader/csharploader').then(function (module) {
     var cSharpLoader = module.CSharpLoader;
     // try new api
-    var assembly = cSharpLoader.instance.loadAssembly('./MonoSanityClient.dll', () =>
+    var assembly = cSharpLoader.instance.loadAssembly('./MonoClient.dll', () =>
     {
         // The assembly is loaded and runtime as well (example taken from blazor)
-        var examplesClass = assembly.getClass("MonoSanityClient.Examples")
-        var addNumbersMethod = examplesClass.getMethod("AddNumbers");
+        var myClass = assembly.getClass("MonoClient.Client")
+        var addNumbersMethod = myClass.getMethod("AddNumbers");
         var a = 12;
         var b = 13;
         var result = addNumbersMethod.invoke([a,b]);
