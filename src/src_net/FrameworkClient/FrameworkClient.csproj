@@ -45,9 +45,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows_NT'">
-    <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)..\..\.net\$(ProjectName).dll&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)..\..\dist\$(ProjectName).dll&quot;" />
+    <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(ProjectDir)..\..\..\.net\$(ProjectName).dll&quot;&#xD;&#xA;copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(ProjectDir)..\..\..\dist\$(ProjectName).dll&quot;" />
   </Target>
   <Target Name="AfterBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' != 'Windows_NT'">
-    <Exec Command="cp &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)../../.net/$(ProjectName).dll&quot;&#xD;&#xA;cp &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)../../dist/$(ProjectName).dll&quot;" />
+    <Exec Command="cp &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(ProjectDir)../../../.net/$(ProjectName).dll&quot;&#xD;&#xA;cp &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(ProjectDir)../../../dist/$(ProjectName).dll&quot;" />
   </Target>
 </Project>
