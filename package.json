@@ -7,9 +7,6 @@
         "system": "run-script-os",
         "system:win32": "copy /Y \".\\node_modules\\systemjs\\dist\\system.js\" \".\\dist\\system.js\"",
         "system:linux": "cp \"./node_modules/systemjs/dist/system.js\" \"./dist/system.js\"",
-        ".net": "run-script-os",
-        ".net:win32": "copy /Y \".\\.net\\\" \".\\dist\\\"",
-        ".net:linux": "cp -a \"./.net/.\" \"./dist/\"",
         "myscript": "run-script-os",
         "myscript:win32": "copy /Y \".\\src\\myscript.js\" \".\\dist\\myscript.js\"",
         "myscript:linux": "cp \"./src/myscript.js\" \"./dist/myscript.js\"",
@@ -22,7 +19,10 @@
         "buildnet": "run-script-os",
         "buildnet:win32": "dotnet build .\\src\\src_net",
         "buildnet:linux": "dotnet build ./src/src_net",
-        "build": "npm run compile && npm run html && npm run system && npm run .net && npm run myscript && npm run wasm && npm run asmjs && npm run buildnet",
+        ".net": "run-script-os",
+        ".net:win32": "copy /Y \".\\.net\\\" \".\\dist\\\"",
+        ".net:linux": "cp -a \"./.net/.\" \"./dist/\"",
+        "build": "npm run compile && npm run html && npm run system && npm run myscript && npm run wasm && npm run asmjs && npm run buildnet && npm run .net",
         "start": "node_modules\\.bin\\http-server"
     },
     "devDependencies": {
