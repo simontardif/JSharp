@@ -15,16 +15,20 @@ Use VS Code for debugging typescript and Visual Studio for developping the C# pa
 
 First draft idea:
 ```csharp
-var assembly = CSharpLoader.instance.loadAssembly('../.net/MonoSanityClient.dll', () =>
-{
-    // The assembly is loaded and runtime as well (example taken from blazor)
-    var examplesClass = assembly.getClass("MonoSanityClient.Examples")
-    var addNumbersMethod = examplesClass.getMethod("AddNumbers");
-    var a = 12;
-    var b = 13;
-    var result = addNumbersMethod.invoke([a,b]);
+SystemJS.import('loader/csharploader').then(function (module) {
+    var cSharpLoader = module.CSharpLoader;
 
-    var htmlElement = document.getElementById("myCSharpMethod");
-    htmlElement.innerHTML = "C# Result: " + result;
+    var assembly = cSharpLoader.instance.loadAssembly('./MonoSanityClient.dll', () =>
+    {
+        // The assembly is loaded and runtime as well (example taken from blazor)
+        var examplesClass = assembly.getClass("MonoSanityClient.Examples")
+        var addNumbersMethod = examplesClass.getMethod("AddNumbers");
+        var a = 12;
+        var b = 13;
+        var result = addNumbersMethod.invoke([a,b]);
+
+        var htmlElement = document.getElementById("myCSharpMethod");
+        htmlElement.innerHTML = "C# Result: " + result;
+    });
 });
 ```
