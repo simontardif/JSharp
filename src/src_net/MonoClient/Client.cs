@@ -20,7 +20,7 @@ namespace MonoClient
                 Console.WriteLine("This is a test!" + Thread.CurrentThread.ManagedThreadId);
             });
 
-            return (RuntimeInformation.OSDescription + (a+ b) + "another test!").ToString();
+            return (RuntimeInformation.OSDescription + (a + b) + "another test!").ToString();
         }
 
         public static string RepeatString(string str, int count)

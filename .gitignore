@@ -1,6 +1,10 @@
 node_modules/
 dist/
-src/src_net/bin
-src/src_net/obj
 src/src_net/.vs
+src/src_net/MonoClient/bin
+src/src_net/MonoClient/obj
+src/src_net/MonoClient/.vs
+src/src_net/FrameworkClient/bin
+src/src_net/FrameworkClient/obj
+src/src_net/FrameworkClient/.vs
 *.log
