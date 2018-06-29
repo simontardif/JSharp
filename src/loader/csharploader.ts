@@ -105,7 +105,7 @@ export class CSharpLoader
         this._onLoaded = onLoaded;
         this._assemblies[url] = new Assembly(url);
         this.initAssemblies();
-        return this._assemblies[url];
+        return this._assemblies[url];a
     }
 
     //#endregion
