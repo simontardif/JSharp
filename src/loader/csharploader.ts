@@ -97,12 +97,20 @@ export class CSharpLoader
     }
 
     private _onLoaded: () => void;
-    public loadAssembly(url: string, onLoaded: ()=> void): Assembly
+    public loadAssemblies(urls: string[], onLoaded: ()=> void): Assembly[]
     {
         this._onLoaded = onLoaded;
-        this._assemblies[url] = new Assembly(url);
+        var assemblies = [];
+        for (let url of urls)
+        {
+            var assembly = new Assembly(url);
+            assemblies.push(assembly)
+            this._assemblies[url] = assembly;
+        }
+
         this.initAssemblies();
-        return this._assemblies[url];
+
+        return assemblies;
     }
 
     //#endregion
