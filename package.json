@@ -1,7 +1,9 @@
 {
     "scripts": {
         "compile": "node_modules\\.bin\\tsc -p . ",
-        "html": "copy /Y \".\\src\\index.html\" \".\\dist\\index.html\"",
+        "html": "copy-html-files",
+        "html:win32": "copy /Y \".\\src\\index.html\" \".\\dist\\index.html\"",
+        "html:linux": "cp \".\\src\\index.html\" \".\\dist\\index.html\"",
         "system": "copy /Y \".\\node_modules\\systemjs\\dist\\system.js\" \".\\dist\\system.js\"",
         ".net": "copy /Y \".\\.net\\\" \".\\dist\\\"",
         "myscript": "copy /Y \".\\src\\myscript.js\" \".\\dist\\myscript.js\"",
