@@ -9,7 +9,7 @@
         "system:linux": "cp \"./node_modules/systemjs/dist/system.js\" \"./dist/system.js\"",
         ".net": "run-script-os",
         ".net:win32": "copy /Y \".\\.net\\\" \".\\dist\\\"",
-        ".net:linux": "cp \"./.net/\" \"./dist/\"",
+        ".net:linux": "cp -a \"./.net/.\" \"./dist/\"",
         "myscript": "run-script-os",
         "myscript:win32": "copy /Y \".\\src\\myscript.js\" \".\\dist\\myscript.js\"",
         "myscript:linux": "cp \"./src/myscript.js\" \"./dist/myscript.js\"",
