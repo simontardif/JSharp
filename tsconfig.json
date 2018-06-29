@@ -3,6 +3,6 @@
         "target": "es5",
         "module": "system",
         "sourceMap": true,
-        "outFile": "dist/output.js",
+        "outFile": "dist/TypeScriptCS.js",
     }
 }
