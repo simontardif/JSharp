@@ -19,7 +19,8 @@
         "asmjs": "run-script-os",
         "asmjs:win32": "xcopy /Y \".\\asmjs\" \".\\dist\\asmjs\" /e /i /h",
         "asmjs:linux": "cp -a \"./asmjs/.\" \"./dist/asmjs/\"",
-        "build": "npm run compile && npm run html && npm run system && npm run .net && npm run myscript && npm run wasm && npm run asmjs",
+        "buildnet": "dotnet build .\\src\\src_net",
+        "build": "npm run compile && npm run html && npm run system && npm run .net && npm run myscript && npm run wasm && npm run asmjs && npm run buildnet",
         "start": "node_modules\\.bin\\http-server"
     },
     "devDependencies": {
