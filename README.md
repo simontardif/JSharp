@@ -5,7 +5,10 @@ This project use TypeScript to load C# assemblies.
 
 ## Setup
 
-Use VS Code for debugging typescript and Visual Studio for developping the C# parts.
+NodeJS <br>
+DotNet Core SDK<br>
+Use VS Code for debugging TypeScript and Visual Studio for developping the C# parts. <br>
+
 * <b>npm install</b>
 
 ## Dev
@@ -15,6 +18,10 @@ Use VS Code for debugging typescript and Visual Studio for developping the C# pa
 
 First draft idea:
 ```csharp
+
+<script src="system.js"></script>
+<script src="TypeScriptCS.js"></script>
+
 SystemJS.import('loader/csharploader').then(function (module) {
     var cSharpLoader = module.CSharpLoader;
 
