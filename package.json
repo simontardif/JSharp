@@ -21,7 +21,7 @@
         "asmjs:linux": "cp -a \"./asmjs/.\" \"./dist/asmjs/\"",
         "buildnet": "run-script-os",
         "buildnet:win32": "dotnet build .\\src\\src_net",
-        "buildnet:linux": "",
+        "buildnet:linux": "dotnet build ./src/src_net",
         "build": "npm run compile && npm run html && npm run system && npm run .net && npm run myscript && npm run wasm && npm run asmjs && npm run buildnet",
         "start": "node_modules\\.bin\\http-server"
     },
