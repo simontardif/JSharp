@@ -1,5 +1,5 @@
 language: csharp
-solution: ./src/src_net/MonoSanityClient.sln
+solution: ./src/src_net/MonoClient.sln
 node_js:
   - "7"
 mono: latest
@@ -9,4 +9,4 @@ install:
   - npm run build
 script:
   - dotnet build ./src/src_net/MonoClient
-  - xbuild /p:Configuration=Debug ./src/src_net/MonoSanityClient.sln
+  - xbuild /p:Configuration=Debug ./src/src_net/MonoClient.sln
