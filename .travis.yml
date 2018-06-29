@@ -2,6 +2,7 @@ language: csharp
 solution: ./src/src_net/MonoSanityClient.sln
 node_js:
   - "7"
+mono: none
 dotnet: 2.1.301
 install:
   - npm install
