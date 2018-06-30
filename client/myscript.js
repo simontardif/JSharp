@@ -5,7 +5,7 @@
 //   });
 
 SystemJS.import('loader/csharploader').then(function (module) {
-    var cSharpLoader = module.CSharpLoader;
+    var cSharpLoader = module.JSharp.CSharpLoader;
 
     var assemblies = cSharpLoader.instance.loadAssemblies(['./MonoClient.dll'], () =>
     {

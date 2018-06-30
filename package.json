@@ -5,7 +5,7 @@
         "html:win32": "copy /Y \".\\src\\index.html\" \".\\dist\\index.html\"",
         "html:linux": "cp \"./src/index.html\" \"./dist/index.html\"",
         "system": "run-script-os",
-        "system:win32": "copy /Y \".\\node_modules\\systemjs\\dist\\system.js\" \".\\dist\\system.js\"",
+        "system:win32": "type \".\\node_modules\\systemjs\\dist\\system.js\" \".\\dist\\TypeScriptCS.js\" \".\\src\\startup.js\" > \".\\dist\\jsharp.js\"",
         "system:linux": "cp \"./node_modules/systemjs/dist/system.js\" \"./dist/system.js\"",
         "myscript": "run-script-os",
         "myscript:win32": "copy /Y \".\\client\\myscript.js\" \".\\dist\\myscript.js\"",
@@ -31,6 +31,7 @@
     "dependencies": {
         "http-server": "^0.11.1",
         "run-script-os": "^1.0.3",
-        "systemjs": "^0.21.4"
+        "systemjs": "^0.21.4",
+        "systemjs-builder": "^0.16.13"
     }
 }
