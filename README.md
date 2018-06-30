@@ -19,11 +19,10 @@ Use VS Code for debugging TypeScript and Visual Studio for developping the C# pa
 First draft idea:
 ```csharp
 
-<script src="system.js"></script>
-<script src="TypeScriptCS.js"></script>
+<script src="jsharp.js"></script>
 
 SystemJS.import('loader/csharploader').then(function (module) {
-    var cSharpLoader = module.CSharpLoader;
+    var cSharpLoader = module.JSharp.CSharpLoader;
 
     var assembly = cSharpLoader.instance.loadAssembly('./FrameworkClient.dll', () =>
     {
