@@ -11,7 +11,7 @@ SystemJS.import('loader/csharploader').then(function (module) {
     {
         // The assembly is loaded and runtime as well (example taken from blazor)
         var assembly = assemblies[0];
-        var myClass = assembly.getClass("FrameworkClient.Client")
+        var myClass = assembly.getType("FrameworkClient.Client")
         var addNumbersMethod = myClass.getMethod("AddNumbers");
         var a = 12;
         var b = 13;

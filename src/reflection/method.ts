@@ -9,13 +9,11 @@ export class Method
     private _type: Type;
     private _find_method: any;
     private _internalMethod: any;
-    public constructor(type: Type, name: string)
+    public constructor(type: Type, internalMethod: number, name: string)
     {
         this._type = type;
         this._name = name;
-
-        this._find_method = Module.cwrap('mono_wasm_assembly_find_method', 'number', ['number', 'string', 'number']);
-        this._internalMethod = this._find_method(type.internalType, this._name, -1);
+        this._internalMethod = internalMethod;
     }
 
     public invoke(args: any = null): any

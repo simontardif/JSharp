@@ -5,34 +5,41 @@ declare var Module;
 
 export class Type
 {
-    private _classPath: string;
+    private _typePath: string;
     private _assembly: Assembly;
     private _find_class: any;
     private _internalType: any;
-    public constructor(assembly: Assembly, classPath: string)
+    private _namespace: string;
+    private _typeName: string;
+    public constructor(assembly: Assembly, internalType: number, namespace: string, typeName: string, typePath: string)
     {
         this._assembly = assembly;
-        this._classPath = classPath;
-        var namespace: string;
-        var typeName: string;
-        var lastDot = classPath.lastIndexOf(".");
-        if (lastDot !== -1)
-        {
-            namespace = classPath.substr(0, lastDot);
-            typeName = classPath.substr(lastDot+1, )
-        }
-        
-        this._find_class = Module.cwrap('mono_wasm_assembly_find_class', 'number', ['number', 'string', 'string']);
-        this._internalType = this._find_class(assembly.internalAssembly, namespace, typeName);
+        this._typePath = typePath;
+        this._namespace = namespace;
+        this._typeName = typeName;
+        this._internalType = internalType;
     }
 
     public getMethod(name: string)
     {
-        return new Method(this, name);
+        var find_method = Module.cwrap('mono_wasm_assembly_find_method', 'number', ['number', 'string', 'number']);
+        var internalMethod = find_method(this._internalType, name, -1);
+
+        if (internalMethod === 0)
+        {
+            throw new Error("Cannot find method!" + name);
+        }
+
+        return new Method(this, internalMethod, name);
     }
 
     public get internalType(): any
     {
         return this._internalType;
+    }
+
+    public get isValid(): boolean
+    {
+        return this._internalType !== 0;
     }
 }
