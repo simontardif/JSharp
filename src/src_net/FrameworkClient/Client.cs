@@ -14,7 +14,8 @@ namespace FrameworkClient
                 Console.WriteLine("This is a test!" + Thread.CurrentThread.ManagedThreadId);
             });
 
-            return (Environment.OSVersion.Platform + (a + b) + "another test!").ToString();
+            Console.WriteLine($"os version: {Environment.MachineName}");
+            return ("a + b: " + (a + b)).ToString();
         }
     }
 }
