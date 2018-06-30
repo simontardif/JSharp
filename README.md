@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/simontardif/TypeScriptCS.svg?branch=master)](https://travis-ci.com/simontardif/TypeScriptCS)
 # TypeScriptCS
 
-This project use TypeScript to load C# assemblies.
+This project use TypeScript to load C# .Net Standard assemblies.
 
 ## Setup
 
