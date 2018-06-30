@@ -6,12 +6,12 @@
 
 SystemJS.import('loader/csharploader').then(function (module) {
     var cSharpLoader = module.CSharpLoader;
-    // try new api
-    var assemblies = cSharpLoader.instance.loadAssemblies(['./FrameworkClient.dll'], () =>
+
+    var assemblies = cSharpLoader.instance.loadAssemblies(['./MonoClient.dll'], () =>
     {
         // The assembly is loaded and runtime as well (example taken from blazor)
         var assembly = assemblies[0];
-        var myClass = assembly.getType("FrameworkClient.Client")
+        var myClass = assembly.getType("MonoClient.Client")
         var addNumbersMethod = myClass.getMethod("AddNumbers");
         var a = 12;
         var b = 13;

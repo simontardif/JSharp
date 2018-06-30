@@ -27,7 +27,7 @@ export class Type
 
         if (internalMethod === 0)
         {
-            throw new Error("Cannot find method!" + name);
+            throw new Error("Cannot find method '" + name + "'!");
         }
 
         return new Method(this, internalMethod, name);

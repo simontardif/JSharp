@@ -59,7 +59,7 @@ export class Assembly
         var internalType = find_class(this._internalAssembly, namespace, typeName);
         if (internalType === 0)
         {
-            throw new Error("Cannot find type path" + typePath)
+            throw new Error("Cannot find type '"+ typePath + "'!");
         }
 
         return new Type(this, internalType, namespace, typeName, typePath);
@@ -73,7 +73,7 @@ export class Assembly
 
         if (!this.isValid)
         {
-            throw new Error("Invalid Assembly Name!" + this._assemblyName)
+            throw new Error("Invalid Assembly '"+ this._assemblyName + "'!");
         }
     }
 }

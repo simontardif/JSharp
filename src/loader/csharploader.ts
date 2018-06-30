@@ -146,6 +146,7 @@ export class CSharpLoader
           'mscorlib',
           'System',
           'System.Core',
+          'System.Windows.Forms',
         ];
     
         var allAssemblyUrls = (loadBclAssemblies.map(function (name) { return './' + name + '.dll'; }));
