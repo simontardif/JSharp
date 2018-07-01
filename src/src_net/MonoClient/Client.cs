@@ -22,7 +22,7 @@ namespace MonoClient
 
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                Console.WriteLine("Assembly" + assembly.FullName);
+                Console.WriteLine("Loaded Assembly: " + assembly.FullName);
             }
 
             return (RuntimeInformation.OSDescription + (a + b) + "another test!").ToString();

@@ -1,5 +1,6 @@
 import { Assembly } from "../reflection/assembly";
 import { WasmUtils } from "../utilities/wasmutils";
+import { Timer } from "../utilities/timer";
 
 declare var SystemJS;
 declare var WebAssembly;
@@ -11,13 +12,16 @@ export class CSharpLoader
     private static _cSharpLoader: CSharpLoader;
     private _monoRuntimeScriptUrl: string;
     private _assemblies: any;
-    _preloadedAssemblies: string[];
+    private _preloadedAssemblies: string[];
+    private _timer: Timer;
+
     public constructor()
     {
         this._assemblies = {};
         var browserSupportsNativeWebAssembly = typeof WebAssembly !== 'undefined' && WebAssembly.validate;
         var monoRuntimeUrlBase = (browserSupportsNativeWebAssembly ? 'wasm' : 'asmjs');
         this._monoRuntimeScriptUrl = "./" + monoRuntimeUrlBase + '/mono.js';
+        this._timer = new Timer();
 
         var loadBclAssemblies = [
             'netstandard',
@@ -75,6 +79,9 @@ export class CSharpLoader
                         theThis._assemblies[property].init();
                     }
                 }
+
+                theThis._timer.stop();
+                console.log("Loading time for assemblies: " +  theThis._timer.ellapsedTime + "ms");
                 if (theThis._onLoaded) 
                 {
                     theThis._onLoaded();
@@ -102,6 +109,7 @@ export class CSharpLoader
     private _onLoaded: () => void;
     public loadAssemblies(urls: string[], onLoaded: () => void): Assembly[]
     {
+        this._timer.start();
         this._onLoaded = onLoaded;
         var assemblies = [];
         for (let url of urls)
