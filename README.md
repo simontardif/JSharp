@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/simontardif/TypeScriptCS.svg?branch=master)](https://travis-ci.com/simontardif/TypeScriptCS)
-# TypeScriptCS
+# JSharp
 
 This project use TypeScript to load C# .Net Standard assemblies.
 
