@@ -36,3 +36,23 @@ var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
 });
 
 ```
+
+Future API ideas:
+```csharp
+var assemblies = await cSharpLoader.loadAssemblies(["MyAssembly"]);
+var assembly = assemblies.first("MyAssembly");
+
+assembly.getTypes();
+var myType = assembly.getType("MyType");
+
+myType.getMethods(MethodInfo.Instance | MethodInfo.Static);
+var myInstanceMethod = assembly.getMethod("MyInstanceMethod");
+
+var instanceForType = myType.createInstance(args);
+var res = myInstanceMethod.invoke(instanceForType, args);
+
+var myStaticMethod = assembly.getMethod("MyStaticMethod");
+
+res = myStaticMethod.invoke(null, args);
+
+```
