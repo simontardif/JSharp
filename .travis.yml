@@ -9,4 +9,5 @@ install:
   - npm run build_prod
 script:
   - dotnet build ./src/src_net/MonoClient
+  - dotnet restore ./src/src_net
   - msbuild /p:Configuration=Debug ./src/src_net/MonoClient.sln
