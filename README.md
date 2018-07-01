@@ -39,7 +39,7 @@ var assemblies = jsharp.loadAssemblies(['./MonoClient.dll'], () =>
 
 Future API ideas:
 ```csharp
-var assemblies = await cSharpLoader.loadAssemblies(["MyAssembly"]);
+var assemblies = await jsharp.loadAssemblies(["MyAssembly"]);
 var assembly = assemblies.first("MyAssembly");
 
 assembly.getTypes();
