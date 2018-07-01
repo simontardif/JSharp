@@ -6,7 +6,7 @@ mono: latest
 dotnet: 2.1.301
 install:
   - npm install
-  - npm run build
+  - npm run build_prod
 script:
   - dotnet build ./src/src_net/MonoClient
   - msbuild /p:Configuration=Debug ./src/src_net/MonoClient.sln

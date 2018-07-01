@@ -19,8 +19,11 @@
         ".net": "run-script-os",
         ".net:win32": "copy /Y \".\\.net\\\" \".\\dist\\\"",
         ".net:linux": "cp -a \"./.net/.\" \"./dist/\"",
-        "webpack_build": "webpack --mode=\"development\"",
-        "build": "npm run compile && npm run html && npm run myscript && npm run wasm && npm run asmjs && npm run buildnet && npm run .net && npm run webpack_build",
+        "webpack_prod": "webpack --mode=\"production\"",
+        "webpack_dev": "webpack --mode=\"development\"",
+        "build": "npm run compile && npm run html && npm run myscript && npm run wasm && npm run asmjs && npm run buildnet && npm run .net",
+        "build_prod": "npm run build && npm run webpack_prod",
+        "build_dev": "npm run build && npm run webpack_dev",
         "start": "node_modules\\.bin\\http-server"
     },
     "devDependencies": {
