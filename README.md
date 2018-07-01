@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/simontardif/TypeScriptCS.svg?branch=master)](https://travis-ci.com/simontardif/TypeScriptCS)
-# TypeScriptCS
+# JSharp
 
 This project use TypeScript to load C# .Net Standard assemblies.
 
@@ -34,5 +34,25 @@ var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
     var htmlElement = document.getElementById("myCSharpMethod");
     htmlElement.innerHTML = "C# Result: " + result;
 });
+
+```
+
+Future API ideas:
+```csharp
+var assemblies = await cSharpLoader.loadAssemblies(["MyAssembly"]);
+var assembly = assemblies.first("MyAssembly");
+
+assembly.getTypes();
+var myType = assembly.getType("MyType");
+
+myType.getMethods(MethodInfo.Instance | MethodInfo.Static);
+var myInstanceMethod = assembly.getMethod("MyInstanceMethod");
+
+var instanceForType = myType.createInstance(args);
+var res = myInstanceMethod.invoke(instanceForType, args);
+
+var myStaticMethod = assembly.getMethod("MyStaticMethod");
+
+res = myStaticMethod.invoke(null, args);
 
 ```
