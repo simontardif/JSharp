@@ -24,7 +24,6 @@ export class CSharpLoader
             'mscorlib',
             'System',
             'System.Core',
-            'Newtonsoft.Json',
             'JSharp'
         ];
     
