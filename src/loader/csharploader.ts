@@ -165,8 +165,8 @@ export namespace JSharp
 // Create a global variable in the window scope
 declare class window
 {
-    static cSharpLoader: JSharp.CSharpLoader;
+    static jsharp: JSharp.CSharpLoader;
 }
 
 var cSharpLoader = JSharp.CSharpLoader.instance;
-window.cSharpLoader = cSharpLoader;
+window.jsharp = cSharpLoader;
