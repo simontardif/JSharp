@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "system",
+        "module": "es6",
         "sourceMap": true,
-        "outFile": "dist/TypeScriptCS.js"
+        "outDir": "dist",
+        "allowJs": true
     }
 }

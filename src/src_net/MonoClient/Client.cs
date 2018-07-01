@@ -12,13 +12,18 @@ namespace MonoClient
 {
     public static class Client
     {
-        public static string AddNumbers(int a, int b)
+        public static string Test(int a, int b)
         {
             Console.WriteLine("Add number method!" + Thread.CurrentThread.ManagedThreadId);
             Task.Factory.StartNew(() =>
             {
                 Console.WriteLine("This is a test!" + Thread.CurrentThread.ManagedThreadId);
             });
+
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Console.WriteLine("Assembly" + assembly.FullName);
+            }
 
             return (RuntimeInformation.OSDescription + (a + b) + "another test!").ToString();
         }

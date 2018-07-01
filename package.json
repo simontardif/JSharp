@@ -4,9 +4,6 @@
         "html": "run-script-os",
         "html:win32": "copy /Y \".\\src\\index.html\" \".\\dist\\index.html\"",
         "html:linux": "cp \"./src/index.html\" \"./dist/index.html\"",
-        "system": "run-script-os",
-        "system:win32": "type \".\\node_modules\\systemjs\\dist\\system.js\" \".\\dist\\TypeScriptCS.js\" \".\\src\\startup.js\" > \".\\dist\\jsharp.js\"",
-        "system:linux": "cp \"./node_modules/systemjs/dist/system.js\" \"./dist/system.js\"",
         "myscript": "run-script-os",
         "myscript:win32": "copy /Y \".\\client\\myscript.js\" \".\\dist\\myscript.js\"",
         "myscript:linux": "cp \"./client/myscript.js\" \"./dist/myscript.js\"",
@@ -22,16 +19,18 @@
         ".net": "run-script-os",
         ".net:win32": "copy /Y \".\\.net\\\" \".\\dist\\\"",
         ".net:linux": "cp -a \"./.net/.\" \"./dist/\"",
-        "build": "npm run compile && npm run html && npm run system && npm run myscript && npm run wasm && npm run asmjs && npm run buildnet && npm run .net",
+        "webpack_build": "webpack --mode=\"production\"",
+        "build": "npm run compile && npm run html && npm run myscript && npm run wasm && npm run asmjs && npm run buildnet && npm run .net && npm run webpack_build",
         "start": "node_modules\\.bin\\http-server"
     },
     "devDependencies": {
-        "typescript": "~2.7.2"
+        "ts-loader": "^4.4.2",
+        "typescript": "^2.9.2",
+        "webpack": "^4.14.0",
+        "webpack-cli": "^3.0.8"
     },
     "dependencies": {
         "http-server": "^0.11.1",
-        "run-script-os": "^1.0.3",
-        "systemjs": "^0.21.4",
-        "systemjs-builder": "^0.16.13"
+        "run-script-os": "^1.0.3"
     }
 }
