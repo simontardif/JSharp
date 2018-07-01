@@ -1,5 +1,6 @@
 import { WasmUtils } from "../utilities/wasmutils";
 import { Type } from "./type";
+import { ReflectionHelper } from "../utilities/reflectionhelper";
 
 declare var FS;
 declare var Module;
@@ -42,6 +43,19 @@ export class Assembly
     public get isValid(): boolean
     {
         return this._internalAssembly !== 0;
+    }
+
+    public getTypes(): Type[]
+    {
+        var types = [];
+        var typesString = ReflectionHelper.getAssemblyTypes(this._assemblyName);
+        var typesStr = JSON.parse(typesString);
+        for (let type of typesStr)
+        {
+            types.push(this.getType(type));
+        }
+
+        return types;
     }
 
     getType(typePath: string): Type

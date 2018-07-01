@@ -7,4 +7,10 @@ src/src_net/MonoClient/.vs
 src/src_net/FrameworkClient/bin
 src/src_net/FrameworkClient/obj
 src/src_net/FrameworkClient/.vs
+src/src_net/JSharp/bin
+src/src_net/JSharp/obj
+src/src_net/JSharp/.vs
+src/src_net/JSharp.Tests/bin
+src/src_net/JSharp.Tests/obj
+src/src_net/JSharp.Tests/.vs
 *.log
