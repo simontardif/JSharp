@@ -21,7 +21,7 @@ First draft idea:
 
 <script src="jsharp.js"></script>
 
-var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
+var assemblies = jsharp.loadAssemblies(['./MonoClient.dll'], () =>
 {
     // The assembly is loaded and runtime as well (example taken from blazor)
     var assembly = assemblies[0];
