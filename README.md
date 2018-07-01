@@ -19,23 +19,20 @@ Use VS Code for debugging TypeScript and Visual Studio for developping the C# pa
 First draft idea:
 ```csharp
 
-<script src="system.js"></script>
-<script src="TypeScriptCS.js"></script>
+<script src="jsharp.js"></script>
 
-SystemJS.import('loader/csharploader').then(function (module) {
-    var cSharpLoader = module.CSharpLoader;
+var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
+{
+    // The assembly is loaded and runtime as well (example taken from blazor)
+    var assembly = assemblies[0];
+    var myClass = assembly.getType("MonoClient.Client")
+    var addNumbersMethod = myClass.getMethod("Test");
+    var a = 12;
+    var b = 13;
+    var result = addNumbersMethod.invoke([a,b]);
 
-    var assembly = cSharpLoader.instance.loadAssembly('./FrameworkClient.dll', () =>
-    {
-        // The assembly is loaded and runtime as well (example taken from blazor)
-        var myClass = assembly.getClass("FrameworkClient.Client")
-        var addNumbersMethod = myClass.getMethod("AddNumbers");
-        var a = 12;
-        var b = 13;
-        var result = addNumbersMethod.invoke([a,b]);
-
-        var htmlElement = document.getElementById("myCSharpMethod");
-        htmlElement.innerHTML = "C# Result: " + result;
-    });
+    var htmlElement = document.getElementById("myCSharpMethod");
+    htmlElement.innerHTML = "C# Result: " + result;
 });
+
 ```
