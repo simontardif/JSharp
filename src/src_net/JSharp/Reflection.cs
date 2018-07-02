@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 namespace JSharp
 {
@@ -19,10 +20,51 @@ namespace JSharp
                 }
             }
 
-            types = types.Remove(types.Length - 1, 1);
-            types.Append("]");
+            var typesString = types.ToString();
+            var lastComma = typesString.LastIndexOf(",");
+            if (lastComma != -1)
+            {
+                typesString = typesString.Remove(lastComma, 1); // remove last comma
+            }
 
-            return types.ToString();
+            typesString = typesString.Insert(typesString.Length, "]");
+
+            return typesString;
+        }
+
+        public static string GetTypeStaticMethods(string assemblyName, string typeName)
+        {
+            StringBuilder methods = new StringBuilder();
+            methods.Append("[");
+            var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.GetName().Name == assemblyName);
+            Type foundType = null;
+            foreach (var type in assembly.GetTypes())
+            {
+                if (type.FullName.Contains(typeName))
+                {
+                    foundType = type;
+                    break;
+                }
+            }
+
+            if (foundType != null)
+            {
+                foreach (var method in foundType.GetMethods(BindingFlags.Static | BindingFlags.Public))
+                {
+                   methods.Append($"\"{method.Name}\","); 
+                }
+            }
+
+            var methodsString = methods.ToString();
+            var lastComma = methodsString.LastIndexOf(",");
+            if (lastComma != -1)
+            {
+                methodsString = methodsString.Remove(lastComma, 1); // remove last comma
+            }
+
+            methodsString = methodsString.Insert(methodsString.Length, "]");
+
+            return methodsString;
         }
     }
 }

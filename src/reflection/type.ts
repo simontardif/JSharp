@@ -1,5 +1,6 @@
 import { Assembly } from "./assembly";
 import { Method } from "./method";
+import { ReflectionHelper } from "../utilities/reflectionhelper";
 
 declare var Module;
 
@@ -31,6 +32,20 @@ export class Type
         }
 
         return new Method(this, internalMethod, name);
+    }
+
+    public getMethods(): Method[]
+    {
+        var methods = [];
+        var methodsString = ReflectionHelper.getTypeStaticMethods(this._assembly.name, this._typePath);
+
+        var methodsArray = JSON.parse(methodsString);
+        for (let method of methodsArray)
+        {
+            methods.push(this.getMethod(method));
+        }
+
+        return methods;
     }
 
     public get internalType(): any
