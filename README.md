@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/simontardif/TypeScriptCS.svg?branch=master)](https://travis-ci.com/simontardif/TypeScriptCS)
+[![Build Status](https://travis-ci.com/simontardif/JSharp.svg?branch=master)](https://travis-ci.com/simontardif/JSharp)
 # JSharp
 
 This project use TypeScript to load C# .Net Standard assemblies. <br>
