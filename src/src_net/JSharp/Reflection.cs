@@ -7,14 +7,15 @@ namespace JSharp
 {
     public static class Reflection
     {
+        private static string[] InvalidChars = new string[] { "<", "+", ">" };
         public static string GetAssemblyTypes(string assemblyName)
         {
             StringBuilder types = new StringBuilder();
             types.Append("[");
-            var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.GetName().Name == assemblyName);
+            var assembly = AppDomain.CurrentDomain.GetAssemblies().First(x => x.GetName().Name == assemblyName);
             foreach (var type in assembly.GetTypes())
             {
-                if (!type.FullName.Contains("<>"))
+                if (InvalidChars.All(x => !type.FullName.Contains(x)))
                 {
                     types.Append($"\"{type.FullName}\",");
                 }
@@ -36,7 +37,7 @@ namespace JSharp
         {
             StringBuilder methods = new StringBuilder();
             methods.Append("[");
-            var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.GetName().Name == assemblyName);
+            var assembly = AppDomain.CurrentDomain.GetAssemblies().First(x => x.GetName().Name == assemblyName);
             Type foundType = null;
             foreach (var type in assembly.GetTypes())
             {
