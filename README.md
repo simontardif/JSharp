@@ -44,7 +44,10 @@ var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
 
 Future API ideas:
 ```csharp
-var assemblies = await jsharp.loadAssemblies(["MyAssembly.dll"]);
+
+var cSharpLoader = jsharp.CSharpLoader.instance;
+
+var assemblies = await cSharpLoader.loadAssemblies(["MyAssembly.dll"]);
 var assembly = assemblies.first("MyAssembly");
 
 assembly.getTypes();
@@ -60,7 +63,7 @@ var myStaticMethod = assembly.getMethod("MyStaticMethod");
 
 res = myStaticMethod.invoke(null, args);
 
-// DotNet Core Execution
+// DotNet Standard Execution (must find an entry point in the assembly)
 jsharp.run("MyAssembly.dll");
 
 ```
