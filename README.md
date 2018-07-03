@@ -22,15 +22,19 @@ First draft idea:
 
 <script src="jsharp.js"></script>
 
-var assemblies = jsharp.loadAssemblies(['./MonoClient.dll'], () =>
+var cSharpLoader = jsharp.CSharpLoader.instance;
+
+var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
 {
     // The assembly is loaded and runtime as well (example taken from blazor)
     var assembly = assemblies[0];
-    var myClass = assembly.getType("MonoClient.Client")
-    var addNumbersMethod = myClass.getMethod("Test");
+    var allTypes = assembly.getTypes();
+    var myType = assembly.getType("MonoClient.Client");
+    var methods = myType.getMethods();
+    var myMethod = myType.getMethod("Test");
     var a = 12;
     var b = 13;
-    var result = addNumbersMethod.invoke([a,b]);
+    var result = myMethod.invoke([a,b]);
 
     var htmlElement = document.getElementById("myCSharpMethod");
     htmlElement.innerHTML = "C# Result: " + result;
@@ -40,7 +44,10 @@ var assemblies = jsharp.loadAssemblies(['./MonoClient.dll'], () =>
 
 Future API ideas:
 ```csharp
-var assemblies = await jsharp.loadAssemblies(["MyAssembly.dll"]);
+
+var cSharpLoader = jsharp.CSharpLoader.instance;
+
+var assemblies = await cSharpLoader.loadAssemblies(["MyAssembly.dll"]);
 var assembly = assemblies.first("MyAssembly");
 
 assembly.getTypes();
@@ -56,7 +63,7 @@ var myStaticMethod = assembly.getMethod("MyStaticMethod");
 
 res = myStaticMethod.invoke(null, args);
 
-// DotNet Core Execution
+// DotNet Standard Execution (must find an entry point in the assembly)
 jsharp.run("MyAssembly.dll");
 
 ```
