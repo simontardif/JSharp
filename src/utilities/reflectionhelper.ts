@@ -1,10 +1,10 @@
-import { CSharpLoader } from "../loader/csharploader";
+import { JSharp } from "../loader/csharploader";
 
 export class ReflectionHelper
 {
     public static getAssemblyTypes(assemblyName: string)
     {
-        var jSharpAssembly = CSharpLoader.instance.getJSharpAssembly();
+        var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
         var reflectionType = jSharpAssembly.getType("JSharp.Reflection");
         var assemblyTypesMethod = reflectionType.getMethod("GetAssemblyTypes");
 
@@ -15,7 +15,7 @@ export class ReflectionHelper
 
     public static getTypeStaticMethods(assemblyName: string, typeName: string)
     {
-        var jSharpAssembly = CSharpLoader.instance.getJSharpAssembly();
+        var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
         var reflectionType = jSharpAssembly.getType("JSharp.Reflection");
         var typeStaticMethods = reflectionType.getMethod("GetTypeStaticMethods");
 
