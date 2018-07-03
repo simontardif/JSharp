@@ -2,7 +2,7 @@ import { JSharp } from "../loader/csharploader";
 
 export class ReflectionHelper
 {
-    public static getAssemblyTypes(assemblyName: string)
+    public static getAssemblyTypes(assemblyName: string) : string
     {
         var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
         var reflectionType = jSharpAssembly.getType("JSharp.Reflection");
@@ -13,7 +13,7 @@ export class ReflectionHelper
         return types;
     }
 
-    public static getTypeStaticMethods(assemblyName: string, typeName: string)
+    public static getTypeStaticMethods(assemblyName: string, typeName: string) : string
     {
         var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
         var reflectionType = jSharpAssembly.getType("JSharp.Reflection");
@@ -22,5 +22,14 @@ export class ReflectionHelper
         var types = typeStaticMethods.invoke([assemblyName, typeName]);
 
         return types;
+    }
+
+    public static logLoadedAssemblies(): void
+    {
+        var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
+        var reflectionType = jSharpAssembly.getType("JSharp.Reflection");
+        var logAssembliesMethod = reflectionType.getMethod("LogLoadedAssemblies");
+
+        logAssembliesMethod.invoke();
     }
 }

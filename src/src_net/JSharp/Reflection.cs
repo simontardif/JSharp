@@ -7,6 +7,14 @@ namespace JSharp
 {
     public static class Reflection
     {
+        public static void LogLoadedAssemblies()
+        {
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Console.WriteLine("Loaded Assembly: " + assembly.FullName);
+            }
+        }
+
         private static string[] InvalidChars = new string[] { "<", "+", ">" };
         public static string GetAssemblyTypes(string assemblyName)
         {

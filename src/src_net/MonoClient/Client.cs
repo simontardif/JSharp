@@ -20,11 +20,6 @@ namespace MonoClient
                 Console.WriteLine("This is a test!" + Thread.CurrentThread.ManagedThreadId);
             });
 
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                Console.WriteLine("Loaded Assembly: " + assembly.FullName);
-            }
-
             return (RuntimeInformation.OSDescription + (a + b) + "another test!").ToString();
         }
 

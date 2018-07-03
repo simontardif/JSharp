@@ -1,6 +1,7 @@
 import * as npAssembly from "../reflection/assembly";
 import { WasmUtils } from "../utilities/wasmutils";
 import { Timer } from "../utilities/timer";
+import { ReflectionHelper } from "../utilities/reflectionhelper";
 
 declare var SystemJS;
 declare var WebAssembly;
@@ -84,6 +85,7 @@ export namespace JSharp
     
                     theThis._timer.stop();
                     console.log("Loading time for assemblies: " +  theThis._timer.ellapsedTime + "ms");
+                    ReflectionHelper.logLoadedAssemblies();
                     if (theThis._onLoaded) 
                     {
                         theThis._onLoaded();
