@@ -197,9 +197,9 @@ declare class window
     static Browser: { init: () => void; asyncLoad: (url: any, onload: any, onerror: any) => void; };
     static Module: { print: (line: any) => void; printEr: (line: any) => void; locateFile: (fileName: any) => any; preloadPlugins: any[]; preRun: (() => void)[]; postRun: (() => void)[]; };
     static DotNet: { jsCallDispatcher: { findJSFunction: (identifier: any) => any; }; };
-    static jsharp: typeof JSharp;
+    static jsharp: {};
 }
 
 // Create a global variable in the window scope
-var cSharpLoader = JSharp;
-window.jsharp = cSharpLoader;
+window.jsharp = window.jsharp || {};
+window.jsharp['CSharpLoader'] = JSharp.CSharpLoader;

@@ -94,3 +94,12 @@ export namespace JSharp
         }
     }
 }
+
+declare class window
+{
+    static jsharp: any;
+}
+
+// Create a global variable in the window scope
+window.jsharp = window.jsharp || {};
+window.jsharp['Assembly'] = JSharp.Assembly;
