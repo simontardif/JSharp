@@ -1,6 +1,7 @@
 {
     "scripts": {
         "compile": "node_modules\\.bin\\tsc -p . ",
+        "create_dist": "mkdirp dist",
         "html": "run-script-os",
         "html:win32": "copy /Y \".\\src\\index.html\" \".\\dist\\index.html\"",
         "html:linux": "cp \"./src/index.html\" \"./dist/index.html\"",
@@ -26,8 +27,8 @@
         "webpack_dev": "webpack --mode=\"development\"",
         "copy_scripts": "npm run html && npm run myscript && npm run wasm && npm run asmjs",
         "build": "npm-run-all --parallel copy_scripts compile buildnet .net",
-        "build_prod": "npm run build && npm run webpack_prod",
-        "build_dev": "npm run build && npm run webpack_dev",
+        "build_prod": "npm run create_dist && npm run build && npm run webpack_prod",
+        "build_dev": "npm run create_dist && npm run build && npm run webpack_dev",
         "tests": "npm run nettests",
         "start": "node_modules\\.bin\\http-server"
     },
@@ -40,6 +41,7 @@
     },
     "dependencies": {
         "http-server": "^0.11.1",
+        "mkdirp": "^0.5.1",
         "run-script-os": "^1.0.3"
     }
 }
