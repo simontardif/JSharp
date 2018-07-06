@@ -41,7 +41,17 @@ namespace JSharp
             return typesString;
         }
 
+        public static string GetTypeInstanceMethods(string assemblyName, string typeName)
+        {
+            return GetTypeMethods(assemblyName, typeName, BindingFlags.Instance | BindingFlags.Public);
+        }
+
         public static string GetTypeStaticMethods(string assemblyName, string typeName)
+        {
+            return GetTypeMethods(assemblyName, typeName, BindingFlags.Static | BindingFlags.Public);
+        }
+
+        public static string GetTypeMethods(string assemblyName, string typeName, BindingFlags bindingFlags)
         {
             StringBuilder methods = new StringBuilder();
             methods.Append("[");
@@ -58,9 +68,9 @@ namespace JSharp
 
             if (foundType != null)
             {
-                foreach (var method in foundType.GetMethods(BindingFlags.Static | BindingFlags.Public))
+                foreach (var method in foundType.GetMethods(bindingFlags).Where(x => x.DeclaringType != typeof(object)))
                 {
-                   methods.Append($"\"{method.Name}\","); 
+                   methods.Append($"\"{method.Name}\",");
                 }
             }
 

@@ -1,4 +1,5 @@
 import { JSharp } from "../loader/csharploader";
+import * as npMethodInfo from "../reflection/methodinfo";
 
 export class ReflectionHelper
 {
@@ -13,6 +14,18 @@ export class ReflectionHelper
         return types;
     }
 
+    public static getTypeMethods(assemblyName: string, typeName: string, methodInfo: npMethodInfo.JSharp.MethodInfo) : string
+    {
+        if (methodInfo === npMethodInfo.JSharp.MethodInfo.Static)
+        {
+            return ReflectionHelper.getTypeStaticMethods(assemblyName, typeName);
+        }
+        else if (methodInfo === npMethodInfo.JSharp.MethodInfo.Instance)
+        {
+            return ReflectionHelper.getTypeInstanceMethods(assemblyName, typeName);
+        }
+    }
+
     public static getTypeStaticMethods(assemblyName: string, typeName: string) : string
     {
         var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
@@ -20,6 +33,17 @@ export class ReflectionHelper
         var typeStaticMethods = reflectionType.getMethod("GetTypeStaticMethods");
 
         var types = typeStaticMethods.invoke([assemblyName, typeName]);
+
+        return types;
+    }
+
+    public static getTypeInstanceMethods(assemblyName: string, typeName: string) : string
+    {
+        var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
+        var reflectionType = jSharpAssembly.getType("JSharp.Reflection");
+        var typeInstanceMethods = reflectionType.getMethod("GetTypeInstanceMethods");
+
+        var types = typeInstanceMethods.invoke([assemblyName, typeName]);
 
         return types;
     }

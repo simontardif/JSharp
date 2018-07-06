@@ -1,6 +1,7 @@
 import * as npAssembly from "./assembly";
 import * as npMethod from "./method";
 import { ReflectionHelper } from "../utilities/reflectionhelper";
+import * as npMethodInfo from "./methodinfo";
 
 declare var Module;
 
@@ -36,10 +37,10 @@ export namespace JSharp
             return new npMethod.JSharp.Method(this, internalMethod, name);
         }
     
-        public getMethods(): npMethod.JSharp.Method[]
+        public getMethods(methodInfo: npMethodInfo.JSharp.MethodInfo = npMethodInfo.JSharp.MethodInfo.Static): npMethod.JSharp.Method[]
         {
             var methods = [];
-            var methodsString = ReflectionHelper.getTypeStaticMethods(this._assembly.name, this._typePath);
+            var methodsString = ReflectionHelper.getTypeMethods(this._assembly.name, this._typePath, methodInfo);
     
             var methodsArray = JSON.parse(methodsString);
             for (let method of methodsArray)

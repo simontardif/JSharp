@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MonoClient
 {
-    public static class Client
+    public class Client
     {
         public static string Test(int a, int b)
         {
@@ -49,6 +49,11 @@ namespace MonoClient
             }
 
             return $".NET received: {(result ?? "(NULL)")}";
+        }
+
+        public void TestInstanceMethod()
+        {
+            Console.WriteLine("This is an instance method!");
         }
 
         public static string CallJsNoBoxing(int numberA, int numberB)

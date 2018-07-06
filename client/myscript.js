@@ -12,7 +12,8 @@ var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
     var assembly = assemblies[0];
     var allTypes = assembly.getTypes();
     var myType = assembly.getType("MonoClient.Client");
-    var methods = myType.getMethods();
+    var staticMethods = myType.getMethods(jsharp.MethodInfo.Static);
+    var instanceMethods = myType.getMethods(jsharp.MethodInfo.Instance);
     var myMethod = myType.getMethod("Test");
     var a = 12;
     var b = 13;
