@@ -50,7 +50,7 @@ var cSharpLoader = jsharp.CSharpLoader.instance;
 var assemblies = await cSharpLoader.loadAssemblies(["MyAssembly.dll"]);
 var assembly = assemblies.first("MyAssembly");
 
-var myObject = assembly.createInstance("MyType"); // create a javascript object with exposed methods that call C# methods
+var myObject = assembly.createInstance("MyType"); // Create a javascript object with exposed methods that call C# methods
 myObject.myInstanceMethod();
 myObject.myOtherInstanceMethod();
 
