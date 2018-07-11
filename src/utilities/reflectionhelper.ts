@@ -56,4 +56,14 @@ export class ReflectionHelper
 
         logAssembliesMethod.invoke();
     }
+
+    public static startJSharpEngine(): void
+    {
+        var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
+
+        var reflectionType = jSharpAssembly.getType("JSharp.Engine");
+        var startEngineMethod = reflectionType.getMethod("Start");
+
+        startEngineMethod.invoke();
+    }
 }

@@ -86,6 +86,7 @@ export namespace JSharp
                     theThis._timer.stop();
                     console.log("Loading time for assemblies: " +  theThis._timer.ellapsedTime + "ms");
                     ReflectionHelper.logLoadedAssemblies();
+                    ReflectionHelper.startJSharpEngine();
                     if (theThis._onLoaded) 
                     {
                         theThis._onLoaded();
