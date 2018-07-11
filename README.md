@@ -50,18 +50,11 @@ var cSharpLoader = jsharp.CSharpLoader.instance;
 var assemblies = await cSharpLoader.loadAssemblies(["MyAssembly.dll"]);
 var assembly = assemblies.first("MyAssembly");
 
-assembly.getTypes();
-var myType = assembly.getType("MyType");
+var myObject = assembly.createInstance("MyType"); // Create a javascript object with exposed methods that call C# methods
+myObject.myInstanceMethod();
+myObject.myOtherInstanceMethod();
 
-myType.getMethods(MethodInfo.Instance | MethodInfo.Static);
-var myInstanceMethod = assembly.getMethod("MyInstanceMethod");
-
-var instanceForType = myType.createInstance(args);
-var res = myInstanceMethod.invoke(instanceForType, args);
-
-var myStaticMethod = assembly.getMethod("MyStaticMethod");
-
-res = myStaticMethod.invoke(null, args);
+myObject.Class.MyStaticMethod();
 
 // DotNet Standard Execution (must find an entry point in the assembly)
 jsharp.run("MyAssembly.dll");
