@@ -22,6 +22,8 @@ First draft idea:
 
 <script src="jsharp.js"></script>
 
+// Javascript Part
+
 var cSharpLoader = jsharp.CSharpLoader.instance;
 
 var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
@@ -38,6 +40,24 @@ var assemblies = cSharpLoader.loadAssemblies(['./MonoClient.dll'], () =>
     var htmlElement = document.getElementById("myCSharpMethod");
     htmlElement.innerHTML = "C# Result: " + result;
 });
+
+// C# Part
+namespace MonoClient
+{
+    public class Client
+    {
+        public static string Test(int a, int b)
+        {
+            Console.WriteLine("Add number method!" + Thread.CurrentThread.ManagedThreadId);
+            Task.Factory.StartNew(() =>
+            {
+                Console.WriteLine("This is a test!" + Thread.CurrentThread.ManagedThreadId);
+            });
+
+            return (RuntimeInformation.OSDescription + (a + b) + "another test!").ToString();
+        }
+        
+        (...)
 
 ```
 
