@@ -51,9 +51,11 @@ namespace MonoClient
             return $".NET received: {(result ?? "(NULL)")}";
         }
 
-        public void TestInstanceMethod()
+        public string TestInstanceMethod(int a, int b)
         {
-            Console.WriteLine("This is an instance method!");
+            Console.WriteLine($"This is an instance method! res: {a + b}");
+
+            return (a+b).ToString();
         }
 
         public static string CallJsNoBoxing(int numberA, int numberB)

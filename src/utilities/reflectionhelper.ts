@@ -66,4 +66,14 @@ export class ReflectionHelper
 
         startEngineMethod.invoke();
     }
+
+    public static createInstance(assemblyName: string, typeName: string): string
+    {
+        var jSharpAssembly = JSharp.CSharpLoader.instance.getJSharpAssembly();
+
+        var reflectionType = jSharpAssembly.getType("JSharp.Reflection");
+        var createInstanceMethod = reflectionType.getMethod("CreateInstance");
+
+        return createInstanceMethod.invoke([assemblyName, typeName]);
+    }
 }

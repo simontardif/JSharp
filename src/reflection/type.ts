@@ -23,6 +23,16 @@ export namespace JSharp
             this._typeName = typeName;
             this._internalType = internalType;
         }
+
+        public get namespace(): string
+        {
+            return this._namespace;
+        }
+
+        public get typeName(): string
+        {
+            return this._typeName;
+        }
     
         public getMethod(name: string)
         {

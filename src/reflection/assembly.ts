@@ -1,5 +1,7 @@
 import { WasmUtils } from "../utilities/wasmutils";
 import * as npType from "../reflection/type";
+import * as npInstance from "../reflection/instance";
+import * as npClass from "../reflection/class";
 import { ReflectionHelper } from "../utilities/reflectionhelper";
 
 declare var FS;
@@ -58,6 +60,19 @@ export namespace JSharp
             }
     
             return types;
+        }
+
+        createInstance(typePath: string): npInstance.JSharp.Instance
+        {
+            var type = this.getType(typePath);
+            var instanceString = ReflectionHelper.createInstance(this._assemblyName, typePath);
+            return new npInstance.JSharp.Instance(Number(instanceString), type);
+        }
+
+        getClass(typePath: string): npClass.JSharp.Class
+        {
+            var type = this.getType(typePath);
+            return new npClass.JSharp.Class(type);
         }
     
         getType(typePath: string): npType.JSharp.Type

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace JSharp
 {
@@ -41,6 +42,23 @@ namespace JSharp
             return typesString;
         }
 
+        private static Dictionary<int, object> _instances = new Dictionary<int, object>();
+
+        public static string CreateInstance(string assemblyName, string typeName)
+        {
+            var assembly = AppDomain.CurrentDomain.GetAssemblies().First(x => x.GetName().Name == assemblyName);
+            Type foundType = FindType(typeName, assembly);
+
+            if (foundType != null)
+            {
+                var instance = Activator.CreateInstance(foundType);
+                _instances.Add(instance.GetHashCode(), instance);
+                return instance.GetHashCode().ToString();
+            }
+
+            return "0";
+        }
+
         public static string GetTypeInstanceMethods(string assemblyName, string typeName)
         {
             return GetTypeMethods(assemblyName, typeName, BindingFlags.Instance | BindingFlags.Public);
@@ -56,21 +74,13 @@ namespace JSharp
             StringBuilder methods = new StringBuilder();
             methods.Append("[");
             var assembly = AppDomain.CurrentDomain.GetAssemblies().First(x => x.GetName().Name == assemblyName);
-            Type foundType = null;
-            foreach (var type in assembly.GetTypes())
-            {
-                if (type.FullName.Contains(typeName))
-                {
-                    foundType = type;
-                    break;
-                }
-            }
+            Type foundType = FindType(typeName, assembly);
 
             if (foundType != null)
             {
                 foreach (var method in foundType.GetMethods(bindingFlags).Where(x => x.DeclaringType != typeof(object)))
                 {
-                   methods.Append($"\"{method.Name}\",");
+                    methods.Append($"\"{method.Name}\",");
                 }
             }
 
@@ -84,6 +94,21 @@ namespace JSharp
             methodsString = methodsString.Insert(methodsString.Length, "]");
 
             return methodsString;
+        }
+
+        private static Type FindType(string typeName, Assembly assembly)
+        {
+            Type foundType = null;
+            foreach (var type in assembly.GetTypes())
+            {
+                if (type.FullName.Contains(typeName))
+                {
+                    foundType = type;
+                    break;
+                }
+            }
+
+            return foundType;
         }
     }
 }

@@ -18,6 +18,11 @@ export namespace JSharp
             this._internalMethod = internalMethod;
         }
 
+        public get name(): string
+        {
+            return this._name;
+        }
+
         public invoke(args: any = null): any
         {
             var stack = Module.stackSave();
