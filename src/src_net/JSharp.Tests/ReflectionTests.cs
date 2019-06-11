@@ -11,7 +11,7 @@ namespace JSharp.Tests
         {
             Assembly.Load("JSharp");
             var types = Reflection.GetAssemblyTypes("JSharp");
-            Assert.AreEqual("[\"JSharp.Reflection\"]", types);
+            Assert.AreEqual("[\"JSharp.Engine\",\"JSharp.Reflection\"]", types);
         }
 
         [TestMethod]
